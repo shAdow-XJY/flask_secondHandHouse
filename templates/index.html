@@ -58,6 +58,7 @@
     <script src="../static/js/echarts.common.js"></script>
     <!--引入 layui-->
     <link rel="stylesheet" href="../static/css/layui.css">
+    <script src="../static/js/layui.js" charset="utf-8"></script>
 
 
 </head>
@@ -175,8 +176,9 @@ Fixed Navigation
         <!-- main nav -->
         <nav class="collapse navbar-collapse navbar-right" role="Navigation">
             <ul id="nav" class="nav navbar-nav">
-                <li class="current"><a href="#body">Home</a></li>
-                <li><a href="#showcase">Portfolio</a></li>
+                <li class="current"><a href="#body">首页</a></li>
+                <li><a href="#showcase">走势图</a></li>
+                <li><a href="#our-team">表格</a></li>
             </ul>
         </nav>
         <!-- /main nav -->
@@ -192,14 +194,14 @@ End Fixed Navigation
 =========================================== -->
 
 
-<section id="showcase">
+<section id="showcase" style="background-color:#100C2A;">
     <div class="container">
         <div class="row wow fadeInDown" data-wow-duration="500ms">
             <div class="col-lg-12">
 
                 <!-- section title -->
                 <div class="title text-center">
-                    <h2>Our <span class="color">Works</span></h2>
+                    <h2>Our <span class="color">走势图</span></h2>
                     <div class="border"></div>
                 </div>
                 <!-- /section title -->
@@ -221,7 +223,7 @@ End Fixed Navigation
 
     <!-- portfolio items -->
     <div class="portfolio-item-wrapper wow fadeInUp" data-wow-duration="500ms">
-        <div class="layui-bg-cyan">
+        <div style="background-color:#100C2A;color:#B9B8CE">
             <form action="/">
                 <div class="layui-row layui-col-space10">
                     <div class="layui-col-md4">
@@ -248,10 +250,11 @@ End Fixed Navigation
                         <br>
                     </div>
                     <div class="layui-col-md4">
-                        <button type="button" class="layui-btn layui-btn-normal" data-anim="layui-anim-scaleSpring">
-                            <input type="submit" value="Submit" style="background-color:transparent;border:0; ">
-                        </button>
-
+                        <div class="layui-anim" data-anim="layui-anim-scaleSpring">
+                            <button type="button" class="layui-btn layui-btn-normal">
+                                <input type="submit" value="Submit" style="background-color:transparent;border:0; ">
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -259,7 +262,7 @@ End Fixed Navigation
         </div>
 
 
-        <ul id="og-grid" class="og-grid">
+        <ul id="og-grid" class="og-grid" >
             <!--刚需图-->
             <li class="mix app" style="width: 100%;height:300px;margin: auto;">
                 <div id="GangMap" style="width: 850px;height:300px;margin: auto;"></div>
@@ -593,36 +596,35 @@ End Fixed Navigation
     </script>
 
     <div style="width: 100%;height:400px;margin: auto;">
-        <div class="layui-bg-cyan">
+        <div style="background-color:#100C2A;color:#B9B8CE">
             <form action="/">
                 <div class="layui-row layui-col-space10">
                     <div class="layui-col-md4">
-                        成交量最高的房型:<br>
+                        <br>成交量最高的房型:
                         <input type="text" name="houseHigh" value="houseHigh" readonly="readonly"
                                style="background-color:transparent;border:0;">
                     </div>
                     <div class="layui-col-md4">
-                        比例:<br>
+                        <br>比例:
                         <input type="text" name="rate" value="rate" readonly="readonly"
                                style="background-color:transparent;border:0;">
                         <br>
                     </div>
                     <div class="layui-col-md4">
-                        数量:<br>
+                        <br>数量:
                         <input type="text" name="number" value="number" readonly="readonly"
                                style="background-color:transparent;border:0;">
                     </div>
                     <div class="layui-col-md4">
-                        总价区间:<br>
+                        <br>总价区间:
                         <input type="text" name="priceBetween" value="priceBetween" readonly="readonly"
                                style="background-color:transparent;border:0;">
                     </div>
 
                     <div class="layui-col-md4">
-                        待定:<br>
+                        <br>待定:
                         <input type="text" name="nothing" value="nothing" readonly="readonly"
-                               style="background-color:transparent;border:0;">
-                        <br>
+                               style="background-color:transparent;border:0;"><br>
                     </div>
                 </div>
                 <br>
@@ -632,7 +634,66 @@ End Fixed Navigation
 
     </div>  <!-- portfolio items wrapper -->
 
-    <div style="width: 100%;height:400px;margin: auto;"></div>
+
+</section>   <!-- End section -->
+
+<!-- Start Our Team
+		=========================================== -->
+
+<section id="our-team" style="background-color:#100C2A;">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="title text-center wow fadeInUp" data-wow-duration="500ms">
+                <h2>Our <span class="color">表格</span></h2>
+                <div class="border"></div>
+            </div>
+            <!-- /section title -->
+
+            <div style="background-color:#100C2A;color:#B9B8CE">
+                <form action="/">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-md4">
+                            <br>低于:
+                            <input type="text" name="moneyLess" value="moneyLess"
+                                   style="background-color:transparent;">万元的次新房
+                        </div>
+                        <div class="layui-col-md4">
+                            <br>是否为核心:
+                            <input type="text" name="coreWhet" value="coreWhet"
+                                   style="background-color:transparent;"><br>
+                        </div>
+                    </div>
+                    <br>
+                </form>
+            </div>
+    </div>
+        <table class="layui-hide" id="tableOne"></table>
+        <script>
+            layui.use('table', function () {
+                var table = layui.table;
+
+                table.render({
+                    elem: '#tableOne'
+                    , url: '/demo/table/user/'
+                    , cols: [[
+                        {field: 'littleDistrict', width: 80, title: '小区', sort: true}
+                        , {field: 'City', width: 80, title: '城市'}
+                        , {field: 'Province', width: 80, title: '省份', sort: true}
+                        , {field: '待定', width: 80, title: '待定'}
+                        , {field: '待定', title: '待定', minWidth: 150}
+                        , {field: '待定', width: 80, title: '待定', sort: true}
+                    ]]
+                    , page: true
+                });
+            });
+        </script>
+    </div>
+
+
+
+        </div>    <!-- End row -->
+    </div>    <!-- End container -->
 </section>   <!-- End section -->
 
 
