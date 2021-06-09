@@ -176,10 +176,7 @@ Fixed Navigation
         <nav class="collapse navbar-collapse navbar-right" role="Navigation">
             <ul id="nav" class="nav navbar-nav">
                 <li class="current"><a href="#body">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
                 <li><a href="#showcase">Portfolio</a></li>
-                <li><a href="#our-team">Team</a></li>
             </ul>
         </nav>
         <!-- /main nav -->
@@ -210,11 +207,10 @@ End Fixed Navigation
                 <!-- portfolio item filtering -->
                 <div class="portfolio-filter clearfix">
                     <ul class="text-center">
-                        <li><a href="javascript:void(0)" class="filter" data-filter="all">All</a></li>
-                        <li><a href="javascript:void(0)" class="filter" data-filter=".app">Mobile App</a></li>
-                        <li><a href="javascript:void(0)" class="filter" data-filter=".web">Web Design</a></li>
-                        <li><a href="javascript:void(0)" class="filter" data-filter=".photoshop">Photoshop</a></li>
-                        <li><a href="javascript:void(0)" class="filter" data-filter=".illustrator">Illustrator</a></li>
+                        <li><a href="javascript:void(0)" class="filter" data-filter="all">全部</a></li>
+                        <li><a href="javascript:void(0)" class="filter" data-filter=".app">刚需图</a></li>
+                        <li><a href="javascript:void(0)" class="filter" data-filter=".web">软需图</a></li>
+                        <li><a href="javascript:void(0)" class="filter" data-filter=".photoshop">走势图</a></li>
                     </ul>
                 </div>
                 <!-- /portfolio item filtering -->
@@ -225,185 +221,419 @@ End Fixed Navigation
 
     <!-- portfolio items -->
     <div class="portfolio-item-wrapper wow fadeInUp" data-wow-duration="500ms">
-        <ul id="og-grid" class="og-grid">
-
-            <!-- single portfolio item -->
-            <li class="mix app">
-                <a href="javascript:void(0)"  data-title="Aki bean"
-                   data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.">
-
-                    <img src="../static/img/portfolio/portx1.jpg" alt="Meghna">
-                    <div class="hover-mask">
-                        <h3>Azuki bean</h3>
-                        <span>
-									<i class="fa fa-plus fa-2x"></i>
-                        </span>
+        <div class="layui-bg-cyan">
+            <form action="/">
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col-md4">
+                        Province:<br>
+                        <input type="text" name="Province" value="Province">
                     </div>
 
-                </a>
+                    <div class="layui-col-md4">
+                        City:<br>
+                        <input type="text" name="City" value="City">
+                    </div>
+                    <div class="layui-col-md4">
+                        District:<br>
+                        <input type="text" name="District" value="District">
+                    </div>
+                    <div class="layui-col-md4">
+                        Community:<br>
+                        <input type="text" name="Community" value="Community">
+                        <br>
+                    </div>
+                    <div class="layui-col-md4">
+                        Year:<br>
+                        <input type="text" name="Year" value="Year">
+                        <br>
+                    </div>
+                    <div class="layui-col-md4">
+                        <button type="button" class="layui-btn layui-btn-normal" data-anim="layui-anim-scaleSpring">
+                            <input type="submit" value="Submit" style="background-color:transparent;border:0; ">
+                        </button>
 
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+
+
+        <ul id="og-grid" class="og-grid">
+            <!--刚需图-->
+            <li class="mix app" style="width: 100%;height:300px;margin: auto;">
+                <div id="GangMap" style="width: 850px;height:300px;margin: auto;"></div>
+                <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var chartDom = document.getElementById('GangMap');
+                    var myChart = echarts.init(chartDom, 'dark');
+                    var option;
+
+                    option = {
+                        title: {
+                            text: '堆叠区域图'
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross',
+                                label: {
+                                    backgroundColor: '#6a7985'
+                                }
+                            }
+                        },
+                        legend: {
+                            data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                        },
+                        toolbox: {
+                            feature: {
+                                saveAsImage: {}
+                            }
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value'
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '邮件营销',
+                                type: 'line',
+                                stack: '总量',
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [120, 132, 101, 134, 90, 230, 210]
+                            },
+                            {
+                                name: '联盟广告',
+                                type: 'line',
+                                stack: '总量',
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [220, 182, 191, 234, 290, 330, 310]
+                            },
+                            {
+                                name: '视频广告',
+                                type: 'line',
+                                stack: '总量',
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [150, 232, 201, 154, 190, 330, 410]
+                            },
+                            {
+                                name: '直接访问',
+                                type: 'line',
+                                stack: '总量',
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [320, 332, 301, 334, 390, 330, 320]
+                            },
+                            {
+                                name: '搜索引擎',
+                                type: 'line',
+                                stack: '总量',
+                                label: {
+                                    show: true,
+                                    position: 'top'
+                                },
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [820, 932, 901, 934, 1290, 1330, 1320]
+                            }
+                        ]
+                    };
+
+                    option && myChart.setOption(option);
+                </script>
             </li>
 
-            <!-- /single portfolio item -->
+            <!--软需图-->
+            <li class="mix web" style="width: 100%;height:300px;margin: auto;">
+                <div id="RuanMap" style="width: 850px;height:300px;margin: auto;"></div>
+                <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var chartDom = document.getElementById('RuanMap');
+                    var myChart = echarts.init(chartDom, 'dark');
+                    var option;
 
-            <!-- single portfolio item -->
-            <li class="mix web">
-                <a href="javascript:void(0)" data-largesrc="../static/img/portfolio/portx1.jpg"
-                   data-title="Veggies sunt bona vobis"
-                   data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu.">
-                    <img src="../static/img/portfolio/portx1.jpg" alt="Meghna">
-                    <div class="hover-mask">
-                        <h3>Veggies sunt bona vobis</h3>
-                        <span>
-									<i class="fa fa-plus fa-2x"></i>
-								</span>
-                    </div>
-                </a>
+                    option = {
+                        title: {
+                            text: '堆叠区域图'
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross',
+                                label: {
+                                    backgroundColor: '#6a7985'
+                                }
+                            }
+                        },
+                        legend: {
+                            data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                        },
+                        toolbox: {
+                            feature: {
+                                saveAsImage: {}
+                            }
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value'
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '邮件营销',
+                                type: 'line',
+                                stack: '总量',
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [120, 132, 101, 134, 90, 230, 210]
+                            },
+                            {
+                                name: '联盟广告',
+                                type: 'line',
+                                stack: '总量',
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [220, 182, 191, 234, 290, 330, 310]
+                            },
+                            {
+                                name: '视频广告',
+                                type: 'line',
+                                stack: '总量',
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [150, 232, 201, 154, 190, 330, 410]
+                            },
+                            {
+                                name: '直接访问',
+                                type: 'line',
+                                stack: '总量',
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [320, 332, 301, 334, 390, 330, 320]
+                            },
+                            {
+                                name: '搜索引擎',
+                                type: 'line',
+                                stack: '总量',
+                                label: {
+                                    show: true,
+                                    position: 'top'
+                                },
+                                areaStyle: {},
+                                emphasis: {
+                                    focus: 'series'
+                                },
+                                data: [820, 932, 901, 934, 1290, 1330, 1320]
+                            }
+                        ]
+                    };
+
+                    option && myChart.setOption(option);
+                </script>
             </li>
             <!-- /single portfolio item -->
         </ul> <!-- end og grid -->
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        <form action="/">
-            Province:<br>
-            <input type="text" name="firstname" value="Mickey">
-            <br>
-            City:<br>
-            <input type="text" name="lastname" value="Mouse">
-            <br>
-            District:<br>
-            <input type="text" name="firstname" value="Mickey">
-            <br>
-            Community:<br>
-            <input type="text" name="firstname" value="Mickey">
-            <br>
-            Year:<br>
-            <input type="text" name="firstname" value="Mickey">
-            <br>
-            <input type="submit" value="Submit">
-        </form>
 
-        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-            <div id="runningMap" style="width: 100%;height:400px;margin: auto;"></div>
-            <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
-                var chartDom = document.getElementById('runningMap');
-                var myChart = echarts.init(chartDom, 'dark');
-                var option;
+    </div>
 
-                option = {
-                    title: {
-                        text: '堆叠区域图'
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'cross',
-                            label: {
-                                backgroundColor: '#6a7985'
-                            }
-                        }
-                    },
-                    legend: {
-                        data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
-                    },
-                    toolbox: {
-                        feature: {
-                            saveAsImage: {}
-                        }
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
-                    },
-                    xAxis: [
-                        {
-                            type: 'category',
-                            boundaryGap: false,
-                            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value'
-                        }
-                    ],
-                    series: [
-                        {
-                            name: '邮件营销',
-                            type: 'line',
-                            stack: '总量',
-                            areaStyle: {},
-                            emphasis: {
-                                focus: 'series'
-                            },
-                            data: [120, 132, 101, 134, 90, 230, 210]
-                        },
-                        {
-                            name: '联盟广告',
-                            type: 'line',
-                            stack: '总量',
-                            areaStyle: {},
-                            emphasis: {
-                                focus: 'series'
-                            },
-                            data: [220, 182, 191, 234, 290, 330, 310]
-                        },
-                        {
-                            name: '视频广告',
-                            type: 'line',
-                            stack: '总量',
-                            areaStyle: {},
-                            emphasis: {
-                                focus: 'series'
-                            },
-                            data: [150, 232, 201, 154, 190, 330, 410]
-                        },
-                        {
-                            name: '直接访问',
-                            type: 'line',
-                            stack: '总量',
-                            areaStyle: {},
-                            emphasis: {
-                                focus: 'series'
-                            },
-                            data: [320, 332, 301, 334, 390, 330, 320]
-                        },
-                        {
-                            name: '搜索引擎',
-                            type: 'line',
-                            stack: '总量',
-                            label: {
-                                show: true,
-                                position: 'top'
-                            },
-                            areaStyle: {},
-                            emphasis: {
-                                focus: 'series'
-                            },
-                            data: [820, 932, 901, 934, 1290, 1330, 1320]
-                        }
-                    ]
-                };
+    <!-- 走势图 -->
+    <div id="runningMap" style="width: 100%;height:400px;margin: auto;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var chartDom = document.getElementById('runningMap');
+        var myChart = echarts.init(chartDom, 'dark');
+        var option;
 
-                option && myChart.setOption(option);
-            </script>
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////
-        ///////////////////////////////////////
-        ////////////////////////
+        option = {
+            title: {
+                text: '堆叠区域图'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            legend: {
+                data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '邮件营销',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {},
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: '联盟广告',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {},
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: '视频广告',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {},
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: '直接访问',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {},
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: '搜索引擎',
+                    type: 'line',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'top'
+                    },
+                    areaStyle: {},
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+    </script>
+
+    <div style="width: 100%;height:400px;margin: auto;">
+        <div class="layui-bg-cyan">
+            <form action="/">
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col-md4">
+                        成交量最高的房型:<br>
+                        <input type="text" name="houseHigh" value="houseHigh" readonly="readonly"
+                               style="background-color:transparent;border:0;">
+                    </div>
+                    <div class="layui-col-md4">
+                        比例:<br>
+                        <input type="text" name="rate" value="rate" readonly="readonly"
+                               style="background-color:transparent;border:0;">
+                        <br>
+                    </div>
+                    <div class="layui-col-md4">
+                        数量:<br>
+                        <input type="text" name="number" value="number" readonly="readonly"
+                               style="background-color:transparent;border:0;">
+                    </div>
+                    <div class="layui-col-md4">
+                        总价区间:<br>
+                        <input type="text" name="priceBetween" value="priceBetween" readonly="readonly"
+                               style="background-color:transparent;border:0;">
+                    </div>
+
+                    <div class="layui-col-md4">
+                        待定:<br>
+                        <input type="text" name="nothing" value="nothing" readonly="readonly"
+                               style="background-color:transparent;border:0;">
+                        <br>
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+
     </div>  <!-- portfolio items wrapper -->
 
+    <div style="width: 100%;height:400px;margin: auto;"></div>
 </section>   <!-- End section -->
-
-
-
-
-
-
 
 
 <!-- Back to Top
