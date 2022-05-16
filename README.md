@@ -28,7 +28,6 @@ tags:
 
 #### 演示效果
 
-​           网页地址： [点击进入网页，作者后台没启动时页面会进入失败](http://flaskhouse.sh1.k9s.run:2271/)
 
 ![演示效果](https://img-blog.csdnimg.cn/12e4a3b521eb413bb13c328cfe7e1c76.gif)
 
